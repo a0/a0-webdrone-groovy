@@ -1,2 +1,4 @@
 a0-webdrone-groovy.iml
 .idea
+.gradle
+build
