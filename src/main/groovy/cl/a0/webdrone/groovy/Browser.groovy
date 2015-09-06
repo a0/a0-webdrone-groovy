@@ -9,6 +9,7 @@ class Browser {
   String    browser = "firefox"
   WebDriver driver
 
+
   protected Browser(Map map) {
     map?.each { k, v ->
       try {
@@ -27,6 +28,11 @@ class Browser {
     } else {
       throw new RuntimeException("Unknown browser: [${browser}]")
     }
+  }
+
+  private Open      open
+  def getOpen() {
+    open = open ?: new Open(this)
   }
 
   def quit() {
