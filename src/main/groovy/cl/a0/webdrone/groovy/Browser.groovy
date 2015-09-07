@@ -50,6 +50,11 @@ class Browser {
     clic = clic ?: new Clic(this)
   }
 
+  private Exec exec
+  Exec getExec() {
+    exec = exec ?: new Exec(this)
+  }
+
   def quit() {
     driver.quit()
   }

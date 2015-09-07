@@ -11,10 +11,34 @@ class BrowserSpec extends Specification {
   void cleanup() {
   }
 
+  def "can create and then close a browser and open google"() {
+    setup: "create browser"
+      Browser a0 = Webdrone.create()
+      a0.open.url     "http://www.google.cl"
+
+    cleanup:
+      a0.quit()
+  }
+
+  def "can create and close a browser using a closure and open yahoo"() {
+    setup: "create browser using closure"
+      Webdrone.create() { Browser a0 ->
+        a0.open.url   "http://www.yahoo.com"
+      }
+  }
+
+  def "can take a screenshot"() {
+    setup: "open google and take a screenshot"
+      Webdrone.create() { Browser a0 ->
+        a0.open.url       'http://www.google.com/'
+        a0.shot.screen    'home_page'
+      }
+  }
+
   def "can find a link and clic on it"() {
     setup:
-    Browser a0 = Webdrone.create()
-    a0.open.url     'http://www.microsoft.com/en-us'
+      Browser a0 = Webdrone.create()
+      a0.open.url     'http://www.microsoft.com/en-us'
 
     expect:
       a0.find.link('Download Center') != null
@@ -25,25 +49,14 @@ class BrowserSpec extends Specification {
       a0.quit()
   }
 
-  def "can create and then close a browser and open google"() {
-    setup: "create browser"
-    Browser a0 = Webdrone.create()
-    a0.open.url     "http://www.google.cl"
-    a0.quit()
-  }
+  def "can execute javascript"() {
+    setup:
+      Browser a0 = Webdrone.create()
 
-  def "can create and close a browser using a closure and open yahoo"() {
-    setup: "create browser using closure"
-    Webdrone.create() { Browser a0 ->
-      a0.open.url   "http://www.yahoo.com"
-    }
-  }
+    expect:
+      a0.exec.script    "document.write(arguments[0] + arguments[1]);", "hello", "there"
 
-  def "can take a screenshot"() {
-    setup: "open google and take a screenshot"
-    Webdrone.create() { Browser a0 ->
-      a0.open.url       'http://www.google.com/'
-      a0.shot.screen    'home_page'
-    }
+    cleanup:
+      a0.quit()
   }
 }
