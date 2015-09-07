@@ -11,6 +11,16 @@ class BrowserSpec extends Specification {
   void cleanup() {
   }
 
+  def "can find a link"() {
+    setup:
+    Browser a0 = Webdrone.create()
+    a0.open.url     'http://www.microsoft.com/en-us'
+
+    expect:
+      a0.find.link('Download Center') != null
+      a0.find.link('Download Centers') == null
+  }
+
   def "can create and then close a browser and open google"() {
     setup: "create browser"
     Browser a0 = Webdrone.create()

@@ -40,6 +40,11 @@ class Browser {
     shot = shot ?: new Shot(this)
   }
 
+  private Find find
+  Find getFind() {
+    find = find ?: new Find(this)
+  }
+
   def quit() {
     driver.quit()
   }
