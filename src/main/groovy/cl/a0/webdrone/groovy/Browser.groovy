@@ -35,6 +35,11 @@ class Browser {
     open = open ?: new Open(this)
   }
 
+  private Shot      shot
+  def getShot() {
+    shot = shot ?: new Shot(this)
+  }
+
   def quit() {
     driver.quit()
   }

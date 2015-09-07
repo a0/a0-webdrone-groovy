@@ -22,4 +22,12 @@ class BrowserSpec extends Specification {
       a0.open.url   "http://www.yahoo.com"
     }
   }
+
+  def "can take a screenshot"() {
+    setup: "open google and take a screenshot"
+    Webdrone.create() { Browser a0 ->
+      a0.open.url       'http://www.google.com/'
+      a0.shot.screen    'home_page'
+    }
+  }
 }
