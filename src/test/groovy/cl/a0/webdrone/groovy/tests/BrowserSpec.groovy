@@ -11,7 +11,7 @@ class BrowserSpec extends Specification {
   void cleanup() {
   }
 
-  def "can find a link"() {
+  def "can find a link and clic on it"() {
     setup:
     Browser a0 = Webdrone.create()
     a0.open.url     'http://www.microsoft.com/en-us'
@@ -19,6 +19,7 @@ class BrowserSpec extends Specification {
     expect:
       a0.find.link('Download Center') != null
       a0.find.link('Download Centers') == null
+      a0.clic.link('Download Center') == null
 
     cleanup:
       a0.quit()

@@ -45,6 +45,11 @@ class Browser {
     find = find ?: new Find(this)
   }
 
+  private Clic clic
+  Clic getClic() {
+    clic = clic ?: new Clic(this)
+  }
+
   def quit() {
     driver.quit()
   }
