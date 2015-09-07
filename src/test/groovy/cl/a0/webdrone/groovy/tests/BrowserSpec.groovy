@@ -19,6 +19,9 @@ class BrowserSpec extends Specification {
     expect:
       a0.find.link('Download Center') != null
       a0.find.link('Download Centers') == null
+
+    cleanup:
+      a0.quit()
   }
 
   def "can create and then close a browser and open google"() {
