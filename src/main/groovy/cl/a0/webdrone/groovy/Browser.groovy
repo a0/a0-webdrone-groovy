@@ -30,13 +30,13 @@ class Browser {
     }
   }
 
-  private Open      open
-  def getOpen() {
+  private Open open
+  Open getOpen() {
     open = open ?: new Open(this)
   }
 
-  private Shot      shot
-  def getShot() {
+  private Shot shot
+  Shot getShot() {
     shot = shot ?: new Shot(this)
   }
 

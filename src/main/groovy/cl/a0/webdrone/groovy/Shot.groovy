@@ -4,7 +4,7 @@ import org.openqa.selenium.OutputType
 import org.openqa.selenium.TakesScreenshot
 
 class Shot {
-  Browser   a0
+  protected Browser a0
   protected counter = 0
 
   Shot(Browser a0) {

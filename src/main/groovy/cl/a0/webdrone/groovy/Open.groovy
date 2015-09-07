@@ -1,7 +1,7 @@
 package cl.a0.webdrone.groovy
 
 class Open {
-  Browser   a0
+  protected Browser a0
 
   Open(Browser a0) {
     this.a0 = a0

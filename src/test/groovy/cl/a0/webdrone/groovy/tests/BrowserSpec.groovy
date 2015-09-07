@@ -1,5 +1,7 @@
-package cl.a0.webdrone.groovy
+package cl.a0.webdrone.groovy.tests
 
+import cl.a0.webdrone.groovy.Browser
+import cl.a0.webdrone.groovy.Webdrone
 import spock.lang.Specification
 
 class BrowserSpec extends Specification {
@@ -11,7 +13,7 @@ class BrowserSpec extends Specification {
 
   def "can create and then close a browser and open google"() {
     setup: "create browser"
-    def a0 = Webdrone.create()
+    Browser a0 = Webdrone.create()
     a0.open.url     "http://www.google.cl"
     a0.quit()
   }

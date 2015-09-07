@@ -1,19 +1,19 @@
 package cl.a0.webdrone.groovy
 
 class Webdrone {
-  def static create() {
+  static Browser create() {
     create([:])
   }
 
-  def static create(Map params) {
+  static Browser create(Map params) {
     create([:], null)
   }
 
-  def static create(Closure closure) {
+  static Browser create(Closure closure) {
     create([:], closure)
   }
 
-  def static create(Map params, Closure closure) {
+  static Browser create(Map params, Closure closure) {
     if (closure != null) {
       def a0 = new Browser(params)
       try {
