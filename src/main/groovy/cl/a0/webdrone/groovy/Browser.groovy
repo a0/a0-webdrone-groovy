@@ -60,6 +60,11 @@ class Browser {
     mark = mark ?: new Mark(this)
   }
 
+  private Form form
+  Form getForm() {
+    form = form ?: new Form(this)
+  }
+
   def quit() {
     driver.quit()
   }
