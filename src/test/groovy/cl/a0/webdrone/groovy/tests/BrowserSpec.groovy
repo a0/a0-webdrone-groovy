@@ -41,9 +41,10 @@ class BrowserSpec extends Specification {
       a0.open.url     'http://www.microsoft.com/en-us'
 
     expect:
+      a0.mark.link('Download Center', all: true) != null
       a0.find.link('Download Center') != null
       a0.find.link('Download Centers') == null
-      a0.clic.link('Download Center') == null
+      a0.mark.link('Buy now', all: true) != null
 
     cleanup:
       a0.quit()

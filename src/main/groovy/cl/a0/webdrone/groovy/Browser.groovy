@@ -55,6 +55,11 @@ class Browser {
     exec = exec ?: new Exec(this)
   }
 
+  private Mark mark
+  Mark getMark() {
+    mark = mark ?: new Mark(this)
+  }
+
   def quit() {
     driver.quit()
   }
