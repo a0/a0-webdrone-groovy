@@ -2,11 +2,11 @@ package cl.a0.webdrone.groovy
 
 class Webdrone {
   static Browser create() {
-    create([:])
+    create([:], null)
   }
 
   static Browser create(Map params) {
-    create([:], null)
+    create(params, null)
   }
 
   static Browser create(Closure closure) {

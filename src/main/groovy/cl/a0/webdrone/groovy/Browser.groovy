@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.safari.SafariDriver
 
 class Browser {
-  String    browser = "firefox"
+  String    browser = "chrome"
   WebDriver driver
 
 
@@ -63,6 +63,11 @@ class Browser {
   private Form form
   Form getForm() {
     form = form ?: new Form(this)
+  }
+
+  private Conf conf
+  Conf getConf() {
+    conf = conf ?: new Conf(this)
   }
 
   def quit() {
