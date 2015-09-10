@@ -75,6 +75,11 @@ class Browser {
     wait = wait ?: new Wait(this)
   }
 
+  private Text text
+  Text getText() {
+    text = text ?: new Text(this)
+  }
+
   def quit() {
     driver.quit()
   }
