@@ -80,6 +80,11 @@ class Browser {
     text = text ?: new Text(this)
   }
 
+  private Vrfy vrfy
+  Vrfy getVrfy() {
+    vrfy = vrfy ?: new Vrfy(this)
+  }
+
   def quit() {
     driver.quit()
   }
