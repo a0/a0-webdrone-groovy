@@ -78,7 +78,7 @@ class Mark {
         a0.exec.script    "arguments[0].style.border = '2px solid ${color}'", it
       }
     } else {
-      a0.exec.script    "arguments[0].style.border = '2px solid ${color}'", it
+      a0.exec.script    "arguments[0].style.border = '2px solid ${color}'", item
     }
   }
 }
