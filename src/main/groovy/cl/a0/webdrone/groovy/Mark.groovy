@@ -39,6 +39,14 @@ class Mark {
     flash args, a0.find.on(args, text)
   }
 
+  def option(text) {
+    option([:], text)
+  }
+
+  def option(Map args, text) {
+    flash args, a0.find.option(args, text)
+  }
+
   def xpath(text) {
     xpath([:], text)
   }

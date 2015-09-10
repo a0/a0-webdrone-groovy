@@ -15,15 +15,15 @@ class Find {
     this.a0 = a0
   }
 
-  def id(def id) {
-    a0.driver.findElement(By.id(id))
+  def id(text) {
+    a0.driver.findElement(By.id(text))
   }
 
   def link(text) {
     link([:], text)
   }
 
-  def link(Map args, def text) {
+  def link(Map args, text) {
     xpath(args, UtilXpath.string_literal(UtilXpath.expr_link, text))
   }
 
@@ -31,7 +31,7 @@ class Find {
     button([:], text)
   }
 
-  def button(Map args, def text) {
+  def button(Map args, text) {
     xpath(args, UtilXpath.string_literal(UtilXpath.expr_button, text))
   }
 
@@ -39,15 +39,23 @@ class Find {
     on([:], text)
   }
 
-  def on(Map args, def text) {
+  def on(Map args, text) {
     xpath(args, UtilXpath.string_literal(UtilXpath.expr_link_or_button, text))
+  }
+
+  def option(text) {
+    option([:], text)
+  }
+
+  def option(Map args, text) {
+    xpath(args, UtilXpath.string_literal(UtilXpath.expr_option, text))
   }
 
   def xpath(text) {
     xpath([:], text)
   }
 
-  def xpath(Map args, def text) {
+  def xpath(Map args, text) {
     Params params = new Params(args)
     def items = a0.driver.findElements(By.xpath(text))
     choose(items, params)

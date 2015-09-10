@@ -7,8 +7,8 @@ class Clic {
     this.a0 = a0
   }
 
-  def id(def id) {
-    a0.find.id(id)?.click()
+  def id(text) {
+    a0.find.id(text)?.click()
   }
 
   def link(text) {
@@ -33,6 +33,14 @@ class Clic {
 
   def on(Map args, text) {
     a0.find.on(args, text)?.click()
+  }
+
+  def option(text) {
+    option([:], text)
+  }
+
+  def option(Map args, text) {
+    a0.find.option(args, text)?.click()
   }
 
   def xpath(text) {
