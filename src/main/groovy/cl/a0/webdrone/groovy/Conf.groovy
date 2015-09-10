@@ -10,7 +10,6 @@ class Conf {
     this.a0 = a0
   }
 
-  private timeout = 0
   def setTimeout(val) {
     this.timeout = val
     a0.driver.manage().timeouts().implicitlyWait(val * 1000 as Long, TimeUnit.MILLISECONDS)

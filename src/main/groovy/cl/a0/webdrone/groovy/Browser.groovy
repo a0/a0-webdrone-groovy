@@ -70,6 +70,11 @@ class Browser {
     conf = conf ?: new Conf(this)
   }
 
+  private Wait wait
+  Wait getWait() {
+    wait = wait ?: new Wait(this)
+  }
+
   def quit() {
     driver.quit()
   }
