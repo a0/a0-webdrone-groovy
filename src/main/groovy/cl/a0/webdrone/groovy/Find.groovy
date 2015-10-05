@@ -5,10 +5,12 @@ import org.openqa.selenium.By
 class Find {
   protected Browser a0
 
-  class Params {
+  class Params extends Expando {
     def n = 1
     def all = false
     def visible = true
+
+    def propertyMissing(String name) { }
   }
 
   Find(Browser a0) {
@@ -61,6 +63,7 @@ class Find {
     choose(items, params)
   }
 
+  def propertyMissing(String name, value) { }
 
   protected def choose(List list, Params params) {
     list = list.findAll {
