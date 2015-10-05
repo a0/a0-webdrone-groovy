@@ -78,7 +78,7 @@ class Find {
     if (params.all) {
       list
     } else {
-      list.size() <= params.n ? list.getAt(params.n - 1) : null
+      list.size() >= params.n ? list.getAt(params.n - 1) : null
     }
   }
 }
