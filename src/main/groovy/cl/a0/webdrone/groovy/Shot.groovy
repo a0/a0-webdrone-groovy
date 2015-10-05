@@ -16,7 +16,7 @@ class Shot {
     def filename = sprintf "screenshot-%04d-%s.png", counter, name
     TakesScreenshot takesScreenshot = a0.driver
     byte[] data = takesScreenshot.getScreenshotAs(OutputType.BYTES)
-    new File(filename).withOutputStream {
+    new File(a0.conf.outdir, filename).withOutputStream {
       it.write data
     }
   }

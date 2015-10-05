@@ -2,11 +2,15 @@ package cl.a0.webdrone.groovy
 
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.firefox.FirefoxProfile
 import org.openqa.selenium.safari.SafariDriver
 
 class Browser {
   String    browser = "chrome"
+  boolean   create_outdir = false
+  String    outdir = null
   WebDriver driver
 
 
@@ -14,15 +18,40 @@ class Browser {
     map?.each { k, v ->
       try {
         this[k] = v
+        println "Setting '${k}': '${v}'"
       } catch (Throwable t) {
         println "Ignoring key '${k}': '${v}'"
       }
     }
 
+    if (create_outdir || outdir) {
+      outdir = outdir ?: "webdrone_output_${new Date().format('Ymd_HM')}"
+      this.conf = new Conf(this)
+      this.conf.outdir = outdir
+    }
+
     if (browser == "chrome") {
-      driver = new ChromeDriver()
+      if (outdir != null) {
+        ChromeOptions chromeOptions = new ChromeOptions()
+        Map<String, Object> prefs = new HashMap<String, Object>();
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("download.default_directory", outdir);
+        chromeOptions.setExperimentalOption("prefs", prefs)
+        driver = new ChromeDriver(chromeOptions)
+      } else {
+        driver = new ChromeDriver()
+      }
     } else if (browser == "firefox") {
-      driver = new FirefoxDriver()
+      if (outdir != null) {
+        FirefoxProfile firefoxProfile = new FirefoxProfile()
+        firefoxProfile.setPreference("browser.download.dir", outdir)
+        firefoxProfile.setPreference("browser.download.folderList", 2)
+        firefoxProfile.setPreference("browser.download.manager.showWhenStarting", false)
+        firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk", "images/jpeg, application/pdf, application/octet-stream")
+        driver = new FirefoxDriver(firefoxProfile)
+      } else {
+        driver = new FirefoxDriver()
+      }
     } else if (browser == "safari") {
       driver = new SafariDriver()
     } else {

@@ -11,6 +11,20 @@ class BrowserSpec extends Specification {
   void cleanup() {
   }
 
+  def "can create an output directory"() {
+    setup: "create directory"
+    Browser a0 = Webdrone.create(create_outdir: true)
+    a0.conf.timeout = 10
+    a0.open.url     'http://www.google.cl/'
+    a0.shot.screen  'homepage'      // screenshot saved in output directory
+    a0.form.set     'q', "Download sample file filetype:xls\n"
+    a0.wait.time    5
+    a0.clic.xpath   '//h3'
+
+    cleanup:
+    a0.quit()
+  }
+
   def "can create and then close a browser and open google"() {
     setup: "create browser"
       Browser a0 = Webdrone.create()
