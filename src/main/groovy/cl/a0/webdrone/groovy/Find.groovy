@@ -11,6 +11,7 @@ class Find {
     def visible = true
 
     def propertyMissing(String name) { }
+    void propertyMissing(String name, value) { }
   }
 
   Find(Browser a0) {
@@ -63,7 +64,8 @@ class Find {
     choose(items, params)
   }
 
-  def propertyMissing(String name, value) { }
+  def propertyMissing(String name) { }
+  void propertyMissing(String name, value) { }
 
   protected def choose(List list, Params params) {
     list = list.findAll {
