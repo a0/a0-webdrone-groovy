@@ -11,6 +11,30 @@ class BrowserSpec extends Specification {
   void cleanup() {
   }
 
+  def "can read and write an xlsx"() {
+    setup:
+    String file = this.getClass().getResource("/data.xlsx").file
+    Browser a0 = Webdrone.create()
+    def dict = a0.xlsx.dict filename: file
+    println "dict: ${dict}"
+    dict.name = "${dict.name} d"
+    a0.xlsx.save()
+
+    def rows = a0.xlsx.rows filename: file
+    println "rows: ${rows}"
+    rows[1][1] = "${rows[1][1]} r"
+    a0.xlsx.save()
+
+    def both = a0.xlsx.both filename: file
+    println "rows: ${both}"
+    println "rows: ${both[1]}"
+    both[1].VALUE = "${both[1].VALUE} rd"
+    a0.xlsx.save()
+
+    cleanup:
+    a0.quit()
+  }
+
   def "can create an output directory"() {
     setup: "create directory"
     Browser a0 = Webdrone.create(create_outdir: true)

@@ -18,7 +18,6 @@ class Browser {
     map?.each { k, v ->
       try {
         this[k] = v
-        println "Setting '${k}': '${v}'"
       } catch (Throwable t) {
         println "Ignoring key '${k}': '${v}'"
       }
@@ -112,6 +111,11 @@ class Browser {
   private Vrfy vrfy
   Vrfy getVrfy() {
     vrfy = vrfy ?: new Vrfy(this)
+  }
+
+  private Xlsx xlsx
+  Xlsx getXlsx() {
+    xlsx = xlsx ?: new Xlsx(this)
   }
 
   def quit() {
