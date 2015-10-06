@@ -27,7 +27,7 @@ class Form {
     }
   }
 
-  def get(key, val) {
+  def get(key) {
     this.find_item(key).getAttribute("value")
   }
 
@@ -48,6 +48,16 @@ class Form {
       this.find_item(key)
     }
     this.lastitem.submit()
+  }
+
+  def xlsx() {
+    xlsx([:])
+  }
+
+  def xlsx(Map args) {
+    a0.xlsx.dict(args).each { k, v ->
+      set(k, v)
+    }
   }
 
   private Object lastitem

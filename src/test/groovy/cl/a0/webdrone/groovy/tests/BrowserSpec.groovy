@@ -11,11 +11,25 @@ class BrowserSpec extends Specification {
   void cleanup() {
   }
 
+  def "can update form from xlsx"() {
+    setup:
+    String filename = this.getClass().getResource("/data.xlsx").file
+    Browser a0 = Webdrone.create(create_outdir: true)
+    a0.open.url 'http://getbootstrap.com/css/?#forms'
+    a0.form.with_xpath('//label[contains(.,"%s")]/following-sibling::*[1][self::input | self::textarea | self::select]') {
+      xlsx(sheet: 'sample data', filename: filename)
+    }
+    a0.shot.screen  'ya'
+
+    cleanup:
+    a0.quit()
+  }
+
   def "can read and write an xlsx"() {
     setup:
-    String file = this.getClass().getResource("/data.xlsx").file
+    String filename = this.getClass().getResource("/data.xlsx").file
     Browser a0 = Webdrone.create()
-    def dict = a0.xlsx.dict filename: file
+    def dict = a0.xlsx.dict filename: filename
     println "dict: ${dict}"
     dict.name = "${dict.name} d"
     a0.xlsx.save()
