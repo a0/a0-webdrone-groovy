@@ -17,11 +17,11 @@ class Form {
 
   def set(key, val) {
     def item = this.find_item(key)
-    if (item.tagName == 'select') {
+    if (item != null && item.tagName == 'select') {
       def option = item.findElement(By.xpath(UtilXpath.string_literal(UtilXpath.expr_option, val)))
       item.click()
       option.click()
-    } else {
+    } else if (item) {
       item.clear()
       item.sendKeys(val)
     }
