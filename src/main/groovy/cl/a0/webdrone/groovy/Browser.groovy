@@ -24,7 +24,7 @@ class Browser {
     }
 
     if (create_outdir || outdir) {
-      outdir = outdir ?: "webdrone_output_${new Date().format('Ymd_HM')}"
+      outdir = outdir ?: "webdrone_output/${new Date().format('Ymd_HM')}"
       this.conf = new Conf(this)
       this.conf.outdir = outdir
     }
