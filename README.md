@@ -1,3 +1,15 @@
+# THIS VERSION IS DEPRECATED
+
+When we started developing [Webdrone](https://webdrone.io), the first version was written in Python around 2014-2015. Then, we pretended to mantain also a groovy version and a ruby version.
+
+In favour of constrained resources, we have deprecated all webdrone languages except the ruby version, so go there to use webdrone:
+
+[https://github.com/a0/a0-webdrone-ruby](https://github.com/a0/a0-webdrone-ruby)
+
+Thanks for your understanding.
+
+<hr/>
+
 # Webdrone
 
 Yet another selenium webdriver wrapper, groovy version.
